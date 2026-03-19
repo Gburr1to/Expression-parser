@@ -1,0 +1,23 @@
+ PROJECT_NAME           = "Expression Parser"
+    3 PROJECT_BRIEF          = "Lexical scanner and recursive descent parser for expression validation."
+    4 OUTPUT_DIRECTORY       = docs
+    5
+    6 # Dodano README.md v INPUT, da ga Doxygen najde
+    7 INPUT                  = . README.md
+    8 RECURSIVE              = NO
+    9 FILE_PATTERNS          = *.h *.cpp *.md
+   10
+   11 EXTRACT_ALL            = YES
+   12 EXTRACT_PRIVATE        = YES
+   13 GENERATE_LATEX         = NO
+   14 GENERATE_HTML          = YES
+   15 HTML_OUTPUT            = html
+   16 USE_MDFILE_AS_MAINPAGE = README.md
+   17
+   18 # Izklop Graphviz/dot, ker ga nimate nameščenega
+   19 HAVE_DOT               = NO
+   20 CLASS_GRAPH            = NO
+   21 COLLABORATION_GRAPH    = NO
+   22 GROUP_GRAPHS           = NO
+   23 INCLUDE_GRAPH          = NO
+   24 INCLUDED_BY_GRAPH      = NO
