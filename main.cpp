@@ -3,6 +3,8 @@
 #include <string>
 #include "Token.h"
 #include "Scanner.h"
+#include <stdexcept>
+#include <exception>
 
 using namespace std;
 
@@ -44,10 +46,18 @@ void Primary(Scanner& scanner, Token& currentToken) {
         if (currentToken.getToken() == Scanner::tRparen) {
             currentToken = scanner.nextToken();
         } else {
-            cout << "reject" << endl; exit(0);
+            throw std::runtime_error(
+                "Pričakovan ')', najden: " + currentToken.getLexem() +
+                " na (" + std::to_string(currentToken.getRow()) + "," +
+                std::to_string(currentToken.getColumn()) + ")"
+            );
         }
     } else {
-        cout << "reject" << endl; exit(0);
+        throw std::runtime_error(
+            "Nepričakovan simbol: " + currentToken.getLexem() +
+            " na (" + std::to_string(currentToken.getRow()) + "," +
+            std::to_string(currentToken.getColumn()) + ")"
+        );
     }
 }
 
@@ -122,10 +132,14 @@ int main(int argc, char* argv[]) {
     //getToken nas zanima (int...)
 
     currentToken = scanner.nextToken();
-    Expr(scanner, currentToken);
-    //je dovolj, če rečem, da mora biti current token == ""?
-    if (currentToken.isEof() && currentToken.getLexem() == "") cout << "accept" << endl;
-    else cout << "reject" << endl;
+    try {
+        Expr(scanner, currentToken);
+        if (currentToken.isEof() && currentToken.getLexem() == "") cout << "accept" << endl;
+        else cout << "reject" << endl;
+    }catch (std::exception& e) {
+        cout << "reject:\n" << e.what();
+    }
+
 
     cout << endl;
     inputFile.close();
