@@ -9,24 +9,6 @@
 
 using namespace std;
 
-// Pomožna funkcija, ki preslika integer ID tokena v njegovo besedilno ime
-string getTerminalName(int tokenID) {
-    switch (tokenID) {
-        case Scanner::tInt: return "int";
-        case Scanner::tHex: return "hex";
-        case Scanner::tVariable: return "variable";
-        case Scanner::tPlus: return "plus";
-        case Scanner::tMinus: return "minus";
-        case Scanner::tTimes: return "times";
-        case Scanner::tDivide: return "divide";
-        case Scanner::tModulo: return "modulo";
-        case Scanner::tBwand: return "bwand";
-        case Scanner::tBwor: return "bwor";
-        case Scanner::tLparen: return "lparen";
-        case Scanner::tRparen: return "rparen";
-        default: return "error";
-    }
-}
 
 
 int main(int argc, char* argv[]) {
